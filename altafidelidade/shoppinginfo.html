@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Info</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div class="ShoppingInfo">
+    <form action="">
+      <div class="shoppingAddressForm">
+        <h4>Shopping
+          <b>address</b>
+        </h4>
+        <select name="country" class="country">
+          <option value="Country">Country</option>
+          <option value="Brazil">Brazil</option>
+          <option value="USA">USA</option>
+          <option value="India">India</option>
+        </select>
+        <select name="city" class="city">
+          <option value="City">City</option>
+          <option value="Rio de Janeiro">Rio de Janeiro</option>
+          <option value="Washington">Washington</option>
+          <option value="Nova Deli">Nova Deli</option>
+        </select>
+        <input type="text" name="locale" class="locale" placeholder="State / Region / Province">
+        <input type="text" name="zipCode" class="zipCode" placeholder="Zip Code">
+        <input type="text" name="address1" class="address1" placeholder="Address 1">
+        <input type="text" name="address2" class="address2" placeholder="Address 2">
+
+      </div>
+      <div class="contactInfoForm">
+        <h4>Contact
+          <b>info</b>
+        </h4>
+        <input type="text" name="firstName" class="firstName" placeholder="First Name">
+        <input type="text" name="lastName" class="lastName" placeholder="Last Name">
+        <input type="email" name="email" class="email" placeholder="E-mail">
+        <input type="tel" name="phone" class="phone" placeholder="Phone">
+        <div class="shippingmethod">
+          <span>Shipping Method</span>
+          <!-- <label>
+                <input type="radio" class="radio" name="radio_button" value="radio_1" checked>
+                <p>
+                    <span>1-year subscription</span>
+                    <span class="price">$XX.XX</span>
+                </p>
+            </label>
+            <label>
+                <input type="radio" class="radio" name="radio_button" value="radio_2">
+                <p>
+                    <span>2-year subscription</span>
+                    <span class="price">$XX.XX</span>
+                </p>
+                <p class="sale">
+                    <span>-XX%</span>
+                    <span class="price">$XX.XX</span>
+                </p>
+            </label> -->
+
+        </div>
+      </div>
+    </form>
+    <div class="nav-buttons">
+        <button class="back-button">< Continue Shopping</button>
+        <a href="shoppinginfo.html">
+          <button class="continue-button" >Shopping Info ></button>
+        </a>
+      </div>
+  </div>
+
+  <script src="list.js"></script>
+</body>
+
+</html>
