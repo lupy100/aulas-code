@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="listar()">
+  <div class="ShoppingCart">
+    <p>You have <b>3 itens</b> in your order</p>
+    <table>
+      <thead>            
+        <tr class="row-head">
+          <th class="delete-head"></th>
+          <th class="name-head"align="start">NAME</th>
+          <th class="price-head">PRICE</th>
+          <th class="quantity-head">QUANTITY</th>        
+          <th class="total-head">TOTAL</th>    
+        </tr>
+      </thead>
+      <tbody id="resultado">
+
+      </tbody>
+      
+    </table>
+  
+    <span class="subtotal">Subtotal: R$<b>100</b></span>
+  
+    <div class="nav-buttons">
+      <button class="back-button">< Continue Shopping</button>
+      <button class="continue-button">Shopping Info ></button>
+    </div>
+    
+  </div>
+  <script src="list.js"></script>
+</body>
+
+</html>
