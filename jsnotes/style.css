@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+.Navbar{
+  width: 100vw;
+  background: #ffbb00;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.Navbar img{
+  width: 20px;
+  height: 20px;
+}
+.Navbar .nav-buttons{
+  display: flex;
+}
+.Navbar input{
+  width: 200px;
+}
