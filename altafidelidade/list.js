@@ -103,6 +103,7 @@ function listar() {
 }
 
 function atualizarQuantidade(_codigo, _qtd) {
+  var totalGeral =   document.getElementById('subtotal').innerHTML;
   for (var index = 0; index < produtos.length; index++) {
     if (produtos[index].codigo == _codigo) {
       produtos[index].qtd = _qtd;
@@ -110,6 +111,8 @@ function atualizarQuantidade(_codigo, _qtd) {
       var totalProduto = produtos[index].qtd * produtos[index].preco;
       
       document.getElementById('total-body-'+produtos[index].codigo).innerHTML = "R$<b>"+  totalProduto+ "</b></td>";      
+      var totalAntigo = parseFloat(document.getElementById('total-body-'+produtos[index].codigo).innerHTML);
+      totalGeral = (totalGeral - totalAntigo) + totalProduto;
       console.log(produtos[index]);
       break;
     }

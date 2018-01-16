@@ -185,3 +185,6 @@ cursor: pointer;
     align-items: baseline;
     justify-content: center;
 }
+a{
+    display: block;
+}
