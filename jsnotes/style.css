@@ -5,6 +5,7 @@
 body {
   margin: 0;
   padding: 0;
+  background: #e8e8e8;
 }
 
 .Navbar {
@@ -34,27 +35,73 @@ body {
   width: 60%;
   color: white;
   font-size: 15px;
-  background: #d89f03 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  background: #d89f03 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 13px center;
   border: 0;
   padding: 15px;
   padding-left: 40px;
 }
+
 .Navbar #search::-webkit-input-placeholder {
-  color: #000000;
+  color: #2e2e2e;
 }
 
 .Navbar .Navbar-container {
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .Navbar .Navbar-container img {
   margin-right: 20px;
   cursor: pointer;
 }
+
 .Navbar .Navbar-container span {
   font-size: 20px;
   font-weight: 600;
 }
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+main .container {
+  width: 80%;
+  margin-top: 50px;
+}
+main .buttons{
+  text-align: right;
+}
+main .buttons input{
+  background: #ffbb00;
+  color: #000000;
+  border-radius: 6px;
+  border: 0;
+  padding: 12px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+a{
+  color: #000000;
+  text-decoration: none;
+}
+input[type="text"] {
+  border-radius: 3px;
+  border: 1px;
+  padding: 5px;
+}
+#inputTitle{
+  width: 100%;
+}
+main .item{
+  display: flex;
+  justify-content: space-between;
+}
+main .item input{
+  width: 90%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+

@@ -15,10 +15,8 @@
     </button>
     <div class="Navbar-container">
 
-      <span>
-        JS NOTES
-      </span>
-      <input type="search" name="search" id="search" placeholder="Pesquisa">
+      <span> <a href="#">JS NOTES</a></span>
+      <input type="search" name="search" id="search" placeholder="PESQUISAR">
       <div class="nav-buttons">
         <img src="https://image.flaticon.com/icons/svg/109/109402.svg">
         <img src="https://image.flaticon.com/icons/svg/25/25186.svg">
@@ -27,25 +25,38 @@
       </div>
     </div>
   </div>
-  <form action="" method="post">
-    <fieldset>
-      <legend>CADASTRO DE NOTAS</legend>
-      TÍTULO
-      <br>
-      <input type="text" name="titulo">
-      <br>
-      <fieldset>
-        <legend>ITENS</legend>
-        <input type="text" name="item">
-        <br>
-        <br>
-        <input type="submit" value="Cadastrar c/DOM">
-        <input type="submit" value="Cadastrar s/DOM">
-        <input type="reset" value="Limpar">
 
-      </fieldset>
-    </fieldset>
-  </form>
+  <main>
+    <div class="container">
+      <form>
+        <fieldset>
+          <legend>CADASTRO DE NOTAS</legend>
+          TÍTULO
+          <br/>
+          <input type="text" name="titulo" id="inputTitle">
+          <br/>
+          <fieldset>
+            <legend>ITENS</legend>
+            <button type="button">+</button>
+            <br/><br/>
+            <div class="item">
+              <span>ITEM 1</span>
+              <input type="text" name="item">
+              <button type="button">-</button>
+            </div>
+            <br/><br/>
+            <div class="buttons">
+              <input type="submit" value="Cadastrar c/DOM">
+              <input type="submit" value="Cadastrar s/DOM">
+              <input type="reset" value="Limpar">
+            </div>
+
+          </fieldset>
+        </fieldset>
+      </form>
+    </div>
+
+  </main>
 </body>
 
 </html>
