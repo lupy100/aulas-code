@@ -1,25 +1,60 @@
 * {
   box-sizing: border-box;
 }
-body{
+
+body {
   margin: 0;
   padding: 0;
 }
-.Navbar{
+
+.Navbar {
   width: 100vw;
   background: #ffbb00;
   padding: 15px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
 }
-.Navbar img{
-  width: 20px;
-  height: 20px;
+
+.Navbar img {
+  width: 25px;
+  height: 25px;
 }
-.Navbar .nav-buttons{
+
+.Navbar .nav-buttons {
   display: flex;
 }
-.Navbar input{
-  width: 200px;
+
+.Navbar button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.Navbar #search {
+  width: 60%;
+  color: white;
+  font-size: 15px;
+  background: #d89f03 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  border: 0;
+  padding: 15px;
+  padding-left: 40px;
+}
+.Navbar #search::-webkit-input-placeholder {
+  color: #000000;
+}
+
+.Navbar .Navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.Navbar .Navbar-container img {
+  margin-right: 20px;
+  cursor: pointer;
+}
+.Navbar .Navbar-container span {
+  font-size: 20px;
+  font-weight: 600;
 }
