@@ -6,8 +6,15 @@ function atualizarSecao(secao) {
     var innerHTML = "";
     //percorerre a lista de notas e criar o template de cada nota, e colocar na viriavel
     for (var i = 0; i < notas.length; i++) {
-      innerHTML += '';
+      innerHTML +='<form class="note">'+
+                     '<button class="note__control" type="button" onclick="removerNota(this.form.parentElement, '+i+')">'+
+                        '<i class="fa fa-times" aria-hidden="true"></i>'+
+                     '</button>'+
+                    '<h1 class="note__title">'+notas[i].titulo+'</h1>'+
+                    '<p class="note__body">'+notas[i].texto+'</p>'+
+                  '</form>';
     }
+
     //colocar o html de todo mundo dentro (inner) da secao
     secao.innerHTML = innerHTML;
 }
@@ -27,4 +34,12 @@ function adicionarNota(inputTitle, inputText, formulario,secao) {
     console.log(notas)
     // limpar o formulario
     formulario.reset()
-  }
+}
+
+function removerNota(secao,indice) {
+  //Qual nota voce quer remover splice.(indice, quantas notas)
+  notas.splice(indice,1);
+
+  //atualizar TELA
+  atualizarSecao(secao);
+}
