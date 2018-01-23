@@ -71,10 +71,12 @@ main .container {
   width: 80%;
   margin-top: 50px;
 }
-main .buttons{
+
+main .buttons {
   text-align: right;
 }
-main .buttons input{
+
+main .buttons input {
   background: #ffbb00;
   color: #000000;
   border-radius: 6px;
@@ -83,25 +85,62 @@ main .buttons input{
   font-size: 15px;
   margin-bottom: 10px;
 }
-a{
+
+a {
   color: #000000;
   text-decoration: none;
 }
+
 input[type="text"] {
   border-radius: 3px;
   border: 1px;
   padding: 5px;
 }
-#inputTitle{
+
+#inputTitle {
   width: 100%;
 }
-main .item{
+
+main .item {
   display: flex;
   justify-content: space-between;
 }
-main .item input{
+
+main .item input {
   width: 90%;
   margin-left: 10px;
   margin-right: 10px;
 }
 
+.notes {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.note {
+  width: 200px;
+  border-radius: 2px;
+  background: rgb(255, 246, 141);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+  margin-left: 40px;
+  margin-top: 40px;
+}
+
+.note h1 {
+  margin-top: 0;
+}
+.note ul{
+  list-style: none;
+}
+
+.notes .notes-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.notes .notes-buttons .notes-buttons-icon {
+  margin-left: 10px;
+}
