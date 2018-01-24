@@ -6,16 +6,16 @@ function atualizarSecao(secao) {
   var innerHTML = "";
   //percorerre a lista de notas e criar o template de cada nota, e colocar na viriavel
   for (var i = 0; i < notas.length; i++) {
-    if (notas[i].editando === true) {
+    if (notas[i].editando) {
       innerHTML += '<form class="note">' +
-                      '<input class="note__title" type="text" name="title" placeholder="Título" autofocus="">' +
-                      '<textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota..."></textarea>' +
-                      '<button class="note__control" type="button" onclick="adicionarNota(this.form.title, this.form.texto,this.form,this.form.nextElementSibling)">'+
-                    'Concluído' +
-                    '</button>' +
-                  '</form>';
+        '<input class="note__title" type="text" name="title" value="' + notas[i].titulo + '" placeholder="Título" />' +
+        '<textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">' + notas[i].texto + '</textarea>' +
+        '<button class="note__control" type="button" onclick="adicionarNota(this.form.title, this.form.texto,this.form,this.form.parentElement, ' + i + ')">' +
+        'Concluído' +
+        '</button>' +
+        '</form>';
     } else {
-      innerHTML += '<form class="note" onclick="editarFormulario(this.form, ' + i + ')">' +
+      innerHTML += '<form class="note" onclick="editarFormulario(this.parentElement, ' + i + ')">' +
         '<button class="note__control" type="button" onclick="removerNota(this.form.parentElement, ' + i + ')">' +
         '<i class="fa fa-times" aria-hidden="true"></i>' +
         '</button>' +
@@ -24,27 +24,35 @@ function atualizarSecao(secao) {
         '</form>';
     }
   }
-
-
   //colocar o html de todo mundo dentro (inner) da secao
   secao.innerHTML = innerHTML;
 }
 
-function adicionarNota(inputTitle, inputText, formulario, secao) {
-  // Criar um variavel nota
-  var nota = {
-    titulo: inputTitle.value,
-    texto: inputText.value,
-    editando: false
+function adicionarNota(inputTitle, inputText, formulario, secao,index) {
+  if (index === null) {
+    // Criar um variavel nota
+    var nota = {
+      titulo: inputTitle.value,
+      texto: inputText.value,
+      editando: false
+    }
+    // adiciona nota dentro da lista
+    notas.push(nota)
+
+    //atualizar a seção de notas
+    atualizarSecao(secao);
+
+    // limpar o formulario
+    formulario.reset()
+  } else {
+    // alterar a nota
+    notas[index].titulo = inputTitle.value;
+    notas[index].texto = inputText.value;
+    notas[index].editando = false;
+
+    // atualizar a tela
+    atualizarSecao(secao);
   }
-  // adiciona nota dentro da lista
-  notas.push(nota)
-
-  //atualizar a seção de notas
-  atualizarSecao(secao);
-
-  // limpar o formulario
-  formulario.reset()
 }
 
 function removerNota(secao, indice) {
