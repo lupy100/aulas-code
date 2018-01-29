@@ -30,12 +30,12 @@
 
   <main>
     <div class="container">
-      <form>
+      <form id="formulario">
         <fieldset>
           <legend>CADASTRO DE NOTAS</legend>
           TÍTULO
           <br/>
-          <input type="text" name="titulo" id="inputTitle">
+          <input type="text" id="inputTitle" name="title" autofocus>
           <br/>
           <fieldset>
             <legend>ITENS</legend>
@@ -44,15 +44,15 @@
             <br/>
             <div class="item">
               <span>ITEM 1</span>
-              <input type="text" name="item">
+              <input type="text"  id="inputNotes" name="notes">
               <button type="button">-</button>
             </div>
             <br/>
             <br/>
             <div class="buttons">
-              <input type="submit" value="Cadastrar c/DOM">
-              <input type="submit" value="Cadastrar s/DOM">
-              <input type="reset" value="Limpar">
+              <input type="submit" value="Cadastrar c/DOM" onclick="onCreateNotes(this.form, this.form.nextElementSibling, this.form.title, this.form.notes )">
+              <input type="submit" value="Cadastrar s/DOM" onclick="onCreateNotes(this.form, this.form.nextElementSibling, this.form.title, this.form.notes )">
+              <input type="reset" value="Limpar" onclick="onClean()">
             </div>
 
           </fieldset>
@@ -60,25 +60,12 @@
       </form>
     </div>
 
-    
+
   </main>
-      <section class="notes">
-        <form class="note">
-          <h1 class="note-title"> Titulo Pesado </h1>
-          <ul>
-            <li>assasa</li>
-            <li>fsafs</li>
-            <li>fsafsafs</li>
-          </ul>
-  
-          <div class="notes-buttons">
-              <button class="notes-buttons-icon" type="button">♥</button>
-              <button class="notes-buttons-icon" type="button">♫</button>
-              <button class="notes-buttons-icon" type="button">☻</button>
-              <button class="notes-buttons-icon" type="button">X</button>
-          </div>
-        </form>
-      </section>
+  <section class="notes">
+    
+  </section>
+  <script src="js/notes.js"></script>
 </body>
 
 </html>
