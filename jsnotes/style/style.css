@@ -35,7 +35,9 @@ body {
   width: 60%;
   color: white;
   font-size: 15px;
-  background: #d89f03 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 13px center;
+  background: #d89f03
+    url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+    13px center;
   border: 0;
   padding: 15px;
   padding-left: 40px;
@@ -131,7 +133,7 @@ main .item input {
 .note h1 {
   margin-top: 0;
 }
-.note ul{
+.note ul {
   list-style: none;
 }
 
@@ -143,4 +145,14 @@ main .item input {
 
 .notes .notes-buttons .notes-buttons-icon {
   margin-left: 10px;
+  background-color: transparent;
+  border: 0;
+  
 }
+
+.notes-img {
+  height: 22px;
+  width: 22px;
+}
+
+
