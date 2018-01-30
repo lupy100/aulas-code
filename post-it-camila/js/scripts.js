@@ -1,5 +1,29 @@
 //array de notas/ variavel que representa a nota
 var notas = []
+
+var listaNotas = {
+  listaInterna:[],
+  adiciona: function (titulo, texto) {
+    var nota = {
+      titulo: titulo,
+      texto: texto,
+      editando: false
+    };
+    this.listaInterna.push(nota);
+    
+  },
+  remove: function (index) {
+    this.listaInterna.splice(index, 1);
+  },
+  edita: function (index) {
+    this.listaInterna[index].editando = true;
+  },
+  salva: function (index, novoTitulo, novoTexto) {
+    this.listaInterna[index].titulo = novoTitulo;
+    this.listaInterna[index].texto = novoTexto;
+    this.listaInterna[index].editando = false;
+  }
+}
 // Lista 
 function atualizarSecao(secao) {
   //criar uma variavel que guarda o html de todas as notas que deven aparecer na tela
@@ -15,8 +39,8 @@ function atualizarSecao(secao) {
         '</button>' +
         '</form>';
     } else {
-      innerHTML += '<form class="note" onclick="editarFormulario(this.parentElement, ' + i + ')">' +
-        '<button class="note__control" type="button" onclick="removerNota(this.form.parentElement, ' + i + ')">' +
+      innerHTML += '<form class="note" onclick="editarFormulario(this.parentElement, ' + i + ',event)">' +
+        '<button class="note__control" type="button" onclick="removerNota(this.form.parentElement, ' + i + ',event)">' +
         '<i class="fa fa-times" aria-hidden="true"></i>' +
         '</button>' +
         '<h1 class="note__title">' + notas[i].titulo + '</h1>' +
@@ -28,7 +52,7 @@ function atualizarSecao(secao) {
   secao.innerHTML = innerHTML;
 }
 
-function adicionarNota(inputTitle, inputText, formulario, secao,index) {
+function adicionarNota(inputTitle, inputText, formulario, secao, index) {
   if (index === null) {
     // Criar um variavel nota
     var nota = {
@@ -40,7 +64,7 @@ function adicionarNota(inputTitle, inputText, formulario, secao,index) {
     notas.push(nota)
 
     //atualizar a seção de notas
-    atualizarSecao(secao);
+    // atualizarSecao(secao);
 
     // limpar o formulario
     formulario.reset()
@@ -51,21 +75,23 @@ function adicionarNota(inputTitle, inputText, formulario, secao,index) {
     notas[index].editando = false;
 
     // atualizar a tela
-    atualizarSecao(secao);
+    // atualizarSecao(secao);
   }
 }
 
-function removerNota(secao, indice) {
+function removerNota(secao, indice, event) {
+  event.stopPropagation();
   //Qual nota voce quer remover splice.(indice, quantas notas)
   notas.splice(indice, 1);
 
   //atualizar TELA
-  atualizarSecao(secao);
+  // atualizarSecao(secao);
 }
 
-function editarFormulario(secao, indice) {
+function editarFormulario(secao, indice, event) {
+  event.stopPropagation();
   //pegar nota e setar editando = true
   notas[indice].editando = true;
   //chamo o atualiza tela
-  atualizarSecao(secao);
+  // atualizarSecao(secao);
 }
