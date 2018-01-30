@@ -2,7 +2,8 @@
 var notas = []
 
 var listaNotas = {
-  listaInterna:[],
+  secao: document.getElementsByClassName("notes")[0],
+  listaInterna: [],
   adiciona: function (titulo, texto) {
     var nota = {
       titulo: titulo,
@@ -10,18 +11,21 @@ var listaNotas = {
       editando: false
     };
     this.listaInterna.push(nota);
-    
+    atualizarSecao(this.secao);
   },
   remove: function (index) {
     this.listaInterna.splice(index, 1);
+    atualizarSecao(this.secao);
   },
   edita: function (index) {
     this.listaInterna[index].editando = true;
+    atualizarSecao(this.secao);
   },
   salva: function (index, novoTitulo, novoTexto) {
     this.listaInterna[index].titulo = novoTitulo;
     this.listaInterna[index].texto = novoTexto;
     this.listaInterna[index].editando = false;
+    atualizarSecao(this.secao);
   }
 }
 // Lista 
@@ -29,22 +33,22 @@ function atualizarSecao(secao) {
   //criar uma variavel que guarda o html de todas as notas que deven aparecer na tela
   var innerHTML = "";
   //percorerre a lista de notas e criar o template de cada nota, e colocar na viriavel
-  for (var i = 0; i < notas.length; i++) {
-    if (notas[i].editando) {
+  for (var i = 0; i < listaNotas.listaInterna.length; i++) {
+    if (listaNotas.listaInterna[i].editando) {
       innerHTML += '<form class="note">' +
-        '<input class="note__title" type="text" name="title" value="' + notas[i].titulo + '" placeholder="Título" />' +
-        '<textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">' + notas[i].texto + '</textarea>' +
+        '<input class="note__title" type="text" name="title" value="' + listaNotas.listaInterna[i].titulo + '" placeholder="Título" />' +
+        '<textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">' + listaNotas.listaInterna[i].texto + '</textarea>' +
         '<button class="note__control" type="button" onclick="adicionarNota(this.form.title, this.form.texto,this.form,this.form.parentElement, ' + i + ')">' +
         'Concluído' +
         '</button>' +
         '</form>';
     } else {
-      innerHTML += '<form class="note" onclick="editarFormulario(this.parentElement, ' + i + ',event)">' +
-        '<button class="note__control" type="button" onclick="removerNota(this.form.parentElement, ' + i + ',event)">' +
+      innerHTML += '<form class="note" onclick="editarFormulario(' + i + ')">' +
+        '<button class="note__control" type="button" onclick="removerNota(' + i + ',event)">' +
         '<i class="fa fa-times" aria-hidden="true"></i>' +
         '</button>' +
-        '<h1 class="note__title">' + notas[i].titulo + '</h1>' +
-        '<p class="note__body">' + notas[i].texto + '</p>' +
+        '<h1 class="note__title">' + listaNotas.listaInterna[i].titulo + '</h1>' +
+        '<p class="note__body">' + listaNotas.listaInterna[i].texto + '</p>' +
         '</form>';
     }
   }
@@ -53,45 +57,19 @@ function atualizarSecao(secao) {
 }
 
 function adicionarNota(inputTitle, inputText, formulario, secao, index) {
-  if (index === null) {
-    // Criar um variavel nota
-    var nota = {
-      titulo: inputTitle.value,
-      texto: inputText.value,
-      editando: false
-    }
-    // adiciona nota dentro da lista
-    notas.push(nota)
-
-    //atualizar a seção de notas
-    // atualizarSecao(secao);
-
-    // limpar o formulario
-    formulario.reset()
+  if (listaNotas.listaInterna[index]) {
+    listaNotas.salva(index, inputTitle.value, inputText.value);
   } else {
-    // alterar a nota
-    notas[index].titulo = inputTitle.value;
-    notas[index].texto = inputText.value;
-    notas[index].editando = false;
-
-    // atualizar a tela
-    // atualizarSecao(secao);
+    listaNotas.adiciona(inputTitle.value, inputText.value);
+    formulario.reset()
   }
 }
 
-function removerNota(secao, indice, event) {
+function removerNota(indice, event) {
   event.stopPropagation();
-  //Qual nota voce quer remover splice.(indice, quantas notas)
-  notas.splice(indice, 1);
-
-  //atualizar TELA
-  // atualizarSecao(secao);
+  listaNotas.remove(indice);
 }
 
-function editarFormulario(secao, indice, event) {
-  event.stopPropagation();
-  //pegar nota e setar editando = true
-  notas[indice].editando = true;
-  //chamo o atualiza tela
-  // atualizarSecao(secao);
+function editarFormulario(indice) {
+  listaNotas.edita(indice);
 }
