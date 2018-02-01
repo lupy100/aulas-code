@@ -4,10 +4,11 @@
 // 	const PI = 3.14;
 // 	return PI * raio * raio;
 // }
+
 const listaNotas = {
   secao: document.getElementsByClassName("notes")[0],
   listaInterna: [],
-  adiciona: (titulo, texto) => {
+  adiciona (titulo, texto) {
     let nota = {
       titulo: titulo,
       texto: texto,
@@ -16,11 +17,11 @@ const listaNotas = {
     this.listaInterna.push(nota);
     atualizarSecao(this.secao);
   },
-  remove: (index) => {
+  remove (index) {
     this.listaInterna.splice(index, 1);
     atualizarSecao(this.secao);
   },
-  edita: (index) => {
+  edita(index) {
     this.listaInterna[index].editando = true;
     atualizarSecao(this.secao);
   },
@@ -30,8 +31,8 @@ const listaNotas = {
     this.listaInterna[index].editando = false;
     atualizarSecao(this.secao);
   },
-  pegaNota:index => this.listaInterna[index],
-  contaItem: () => this.listaInterna.length
+  pegaNota(index){ return this.listaInterna[index]},
+  contaItem () {return this.listaInterna.length}
 };
 
 const atualizarSecao = (secao) => {

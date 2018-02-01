@@ -1,31 +1,24 @@
 {
-  "name": "post-it-camila",
+  "name": "post-it",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-<<<<<<< HEAD
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d lib"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "babel-cli": "^6.26.0"
-  }
-  
-
-  
-=======
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel js -d lib"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-xp-front/post-it.git"
+  },
   "author": "",
-  "license": "ISC"
->>>>>>> master
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code-xp-front/post-it/issues"
+  },
+  "homepage": "https://github.com/code-xp-front/post-it#readme"
 }

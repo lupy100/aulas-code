@@ -5,7 +5,8 @@
 // const calcularAreaCirculo = (raio) => {
 // 	const PI = 3.14;
 // 	return PI * raio * raio;
-// };
+// }
+
 var listaNotas = {
   secao: document.getElementsByClassName("notes")[0],
   listaInterna: [],
@@ -15,17 +16,18 @@ var listaNotas = {
       texto: texto,
       editando: false
     };
-    undefined.listaInterna.push(nota);
-    atualizarSecao(undefined.secao);
+    this.listaInterna.push(nota);
+    atualizarSecao(this.secao);
   },
   remove: function remove(index) {
-    undefined.listaInterna.splice(index, 1);
-    atualizarSecao(undefined.secao);
+    this.listaInterna.splice(index, 1);
+    atualizarSecao(this.secao);
   },
   edita: function edita(index) {
-    undefined.listaInterna[index].editando = true;
-    atualizarSecao(undefined.secao);
+    this.listaInterna[index].editando = true;
+    atualizarSecao(this.secao);
   },
+
   salva: function salva(index, novoTitulo, novoTexto) {
     undefined.listaInterna[index].titulo = novoTitulo;
     undefined.listaInterna[index].texto = novoTexto;
@@ -33,10 +35,10 @@ var listaNotas = {
     atualizarSecao(undefined.secao);
   },
   pegaNota: function pegaNota(index) {
-    return undefined.listaInterna[index];
+    return this.listaInterna[index];
   },
   contaItem: function contaItem() {
-    return undefined.listaInterna.length;
+    return this.listaInterna.length;
   }
 };
 
