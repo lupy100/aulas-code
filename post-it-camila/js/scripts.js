@@ -1,13 +1,38 @@
-//array de notas/ variavel que representa a nota
-// var notas = [];
-// const calcularAreaCirculo = (raio) => {
-// 	const PI = 3.14;
-// 	return PI * raio * raio;
-// }
-const listaNotas = {
-  secao: document.getElementsByClassName("notes")[0],
-  listaInterna: [],
-  adiciona: (titulo, texto) => {
+
+// class Pessoa {
+//   constructor(primeiroNome,segundoNome,peso,altura,idade){
+//     this.primeiroNome = primeiroNome;
+//     this.segundoNome = segundoNome;
+// 	this.peso = peso;
+//     this.altura = altura;
+//     this.idade = idade;
+//   };
+
+//   nomeCompleto(){
+//     return `${this.primeiroNome} ${this.segundoNome}`;
+//   };
+
+//   anoNascimento(){
+//     return 2018-this.idade;
+//   };
+  
+//   imc(){
+//   	return this.peso / (this.altura*this.altura)
+//   }
+// };
+
+// let joao = new Pessoa("Joao","Matheus",90,1.80,18);
+
+// joao
+
+
+class listaNotas {
+  constructor(){
+    let secao = document.getElementsByClassName("notes")[0],
+    listaInterna = []
+  };
+
+  adiciona(titulo, texto){
     let nota = {
       titulo: titulo,
       texto: texto,
@@ -15,23 +40,32 @@ const listaNotas = {
     };
     this.listaInterna.push(nota);
     atualizarSecao(this.secao);
-  },
-  remove: (index) => {
+  };
+
+  remove(index)  {
     this.listaInterna.splice(index, 1);
     atualizarSecao(this.secao);
-  },
-  edita: (index) => {
+  };
+
+  edita(index) {
     this.listaInterna[index].editando = true;
     atualizarSecao(this.secao);
-  },
-  salva: (index, novoTitulo, novoTexto) => {
+  };
+
+  salva(index, novoTitulo, novoTexto){
     this.listaInterna[index].titulo = novoTitulo;
     this.listaInterna[index].texto = novoTexto;
     this.listaInterna[index].editando = false;
     atualizarSecao(this.secao);
-  },
-  pegaNota:index => this.listaInterna[index],
-  contaItem: () => this.listaInterna.length
+  };
+
+  pegaNota(index){
+    return this.listaInterna[index];
+  };
+
+  contaItem(){
+    return this.listaInterna.length;
+  };
 };
 
 const atualizarSecao = (secao) => {
@@ -44,9 +78,7 @@ const atualizarSecao = (secao) => {
       innerHTML +=
         `<form class="note">
         <input class="note__title" type="text" name="title" value="${notaAtual.titulo}" placeholder="Título" />
-        <textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">
-          ${notaAtual.texto}
-        </textarea> 
+        <textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">${notaAtual.texto}</textarea> 
         <button class="note__control" type="button" onclick="adicionarNota(this.form.title, this.form.texto,this.form,${i})">
         Concluído 
         </button>
