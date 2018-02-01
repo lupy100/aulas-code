@@ -4,11 +4,9 @@
 // 	const PI = 3.14;
 // 	return PI * raio * raio;
 // };
- class ListaNotas {
-  constructor(){
-    let secao: document.getElementsByClassName("notes")[0],
-    let listaInterna: []
-  }
+const listaNotas = {
+  secao: document.getElementsByClassName("notes")[0],
+  listaInterna: [],
   adiciona(titulo, texto) {
     let nota = {
       titulo: titulo,
@@ -36,7 +34,7 @@
     return this.listaInterna[index];
   },
   contaItem() {
-    return this.listaInterna.length;
+     return this.listaInterna.length;
   }
 
   // Lista
