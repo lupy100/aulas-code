@@ -4,37 +4,82 @@
 // 	const PI = 3.14;
 // 	return PI * raio * raio;
 // };
-const listaNotas = {
-  secao: document.getElementsByClassName("notes")[0],
-  listaInterna: [],
-  adiciona(titulo, texto) {
-    let nota = {
-      titulo: titulo,
-      texto: texto,
-      editando: false
-    };
-    this.listaInterna.push(nota);
-    atualizarSecao(this.secao);
-  },
+
+class Notas {
+  constructor(titulo, texto) {
+    super(titulo, texto)
+    this.titulo = titulo;
+    this.texto = texto;
+    this.editando = false;
+  }
+  get titulo() {
+    return `O titulo é: ${this._titulo} `
+  }
+
+  get texto() {
+    return this._texto;
+  }
+
+  get ediando() {
+    return this._editando;
+  }
+
+  set titulo(tituloAlterado) {
+    if (tituloAlterado !== null && tituloAlterado.length > 5) {
+      this._titulo = tituloAlterado
+    } else {
+      alert('Preencha o titulo')
+    }
+  }
+
+  set texto(textoAlterado) {
+    if (textoAlterado !== null && textoAlterado.length > 5) {
+      this._texto = textoAlterado
+    } else {
+      alert('Preencha o texto')
+    }
+  }
+
+  set editando(editandoAlterado) {
+    this._editando = editandoAlterado
+  }
+}
+
+
+class listaNotas extends Array {
+  constructor() {
+    this._secao = document.getElementsByClassName("notes")[0]
+
+
+
+  };
+  push(titulo, texto) {
+    let nota = new Notas(titulo, texto);
+    Notas.titulo
+    super.push(notas)
+    this._listaInterna.push(nota);
+    // atualizarSecao(this._secao);
+
+  }
   remove(index) {
-    this.listaInterna.splice(index, 1);
-    atualizarSecao(this.secao);
-  },
+    super.splice(index, 1);
+    // atualizarSecao(this._secao);
+  }
   edita(index) {
-    this.listaInterna[index].editando = true;
-    atualizarSecao(this.secao);
-  },
+    this[index].editando = true;
+    // atualizarSecao(this._secao);
+  }
   salva(index, novoTitulo, novoTexto) {
-    this.listaInterna[index].titulo = novoTitulo;
-    this.listaInterna[index].texto = novoTexto;
-    this.listaInterna[index].editando = false;
-    atualizarSecao(this.secao);
-  },
+    this[index].titulo = novoTitulo;
+    this[index].texto = novoTexto;
+    this[index].editando = false;
+    // atualizarSecao(this._secao);
+  }
   pegaNota(index) {
-    return this.listaInterna[index];
-  },
+    return this[index];
+  }
   contaItem() {
-     return this.listaInterna.length;
+    return this.length;
   }
 
   // Lista
