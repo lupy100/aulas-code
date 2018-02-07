@@ -86,96 +86,102 @@ var secao = document.getElementsByClassName('notes')[0];
 // import FormButton from './components/formButton.js';
 
 var observaMudancasNaLista = function observaMudancasNaLista() {
-    atualizarSecao(secao);
+  atualizarSecao(secao);
 };
 
 var listaNotas = new _listaNotas2.default(observaMudancasNaLista);
 
 var atualizarSecao = function atualizarSecao(secao) {
-    // let conteudoSecao = "";
+  // let conteudoSecao = "";
 
-    while (secao.firstChild) {
-        secao.removeChild(secao.firstChild);
-    }
+  while (secao.firstChild) {
+    secao.removeChild(secao.firstChild);
+  }
 
-    for (var posicao = 0; posicao < listaNotas.contaTotal(); posicao++) {
-        var notaAtual = listaNotas.pega(posicao);
+  for (var posicao = 0; posicao < listaNotas.contaTotal(); posicao++) {
+    var notaAtual = listaNotas.pega(posicao);
 
-        // let formNotas = document.createElement('form');
-        // formNotas.setAttribute('class', 'note');
+    // let formNotas = document.createElement('form');
+    // formNotas.setAttribute('class', 'note');
 
-        // let inputTitulo = new FormInput({
-        //     className: 'note__title',
-        //     type: 'text',
-        //     name: 'titulo',
-        //     placeholder: 'Título',
-        //     value: notaAtual.titulo
-        // });
+    // let inputTitulo = new FormInput({
+    //     className: 'note__title',
+    //     type: 'text',
+    //     name: 'titulo',
+    //     placeholder: 'Título',
+    //     value: notaAtual.titulo
+    // });
 
-        // let textareaTexto = new FormTextarea({
-        //     className: 'note__body', 
-        //     name: 'texto', 
-        //     placeholder: 'Criar uma nota...', 
-        //     children: notaAtual.texto
-        // });
+    // let textareaTexto = new FormTextarea({
+    //     className: 'note__body', 
+    //     name: 'texto', 
+    //     placeholder: 'Criar uma nota...', 
+    //     children: notaAtual.texto
+    // });
 
-        // let buttonConcluido = new FormButton({
-        //     className: 'note__control', 
-        //     type: 'button', 
-        //     value: 'Concluído',
-        //     click: () => {
-        //         adicionarNota(formNotas, inputTitulo, textareaTexto, posicao);
-        //     }
-        // });
+    // let buttonConcluido = new FormButton({
+    //     className: 'note__control', 
+    //     type: 'button', 
+    //     value: 'Concluído',
+    //     click: () => {
+    //         adicionarNota(formNotas, inputTitulo, textareaTexto, posicao);
+    //     }
+    // });
 
-        // formNotas.appendChild(inputTitulo);
-        // formNotas.appendChild(textareaTexto);
-        // formNotas.appendChild(buttonConcluido);
+    // formNotas.appendChild(inputTitulo);
+    // formNotas.appendChild(textareaTexto);
+    // formNotas.appendChild(buttonConcluido);
 
-        // if (notaAtual.editando) {
-        //     conteudoSecao += `<form class="note">
-        //                         <input class="note__title" type="text" name="titulo" value="${notaAtual.titulo}" placeholder="Título">
-        //                         <textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">
-        //                             ${notaAtual.texto}
-        //                         </textarea>
-        //                         <button class="note__control" type="button" onclick="adicionarNota(this.form.titulo, this.form.texto, this.form, ${posicao})">
-        //                             Concluído
-        //                         </button>
-        //                       </form>`;
-        // } else {
-        //     conteudoSecao += `<form class="note" onclick="editarFormulario(${posicao})">
-        //                         <button class="note__control" type="button" onclick="removerNota(event, ${posicao})">
-        //                             <i class="fa fa-times" aria-hidden="true"></i>
-        //                         </button>
-        //                         <h1 class="note__title">${notaAtual.titulo}</h1>
-        //                         <p class="note__body">${notaAtual.texto}</p>
-        //                       </form>`;
-        // }
+    // if (notaAtual.editando) {
+    //     conteudoSecao += `<form class="note">
+    //                         <input class="note__title" type="text" name="titulo" value="${notaAtual.titulo}" placeholder="Título">
+    //                         <textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">
+    //                             ${notaAtual.texto}
+    //                         </textarea>
+    //                         <button class="note__control" type="button" onclick="adicionarNota(this.form.titulo, this.form.texto, this.form, ${posicao})">
+    //                             Concluído
+    //                         </button>
+    //                       </form>`;
+    // } else {
+    //     conteudoSecao += `<form class="note" onclick="editarFormulario(${posicao})">
+    //                         <button class="note__control" type="button" onclick="removerNota(event, ${posicao})">
+    //                             <i class="fa fa-times" aria-hidden="true"></i>
+    //                         </button>
+    //                         <h1 class="note__title">${notaAtual.titulo}</h1>
+    //                         <p class="note__body">${notaAtual.texto}</p>
+    //                       </form>`;
+    // }
 
-        // property shorthand
-        var props = { posicao: posicao, notaAtual: notaAtual, editarFormulario: editarFormulario, adicionarNota: adicionarNota, removerNota: removerNota };
-        secao.appendChild(new _formNotas2.default(props));
-    }
+    // property shorthand
+    var props = {
+      posicao: posicao,
+      notaAtual: notaAtual,
+      editarFormulario: editarFormulario,
+      adicionarNota: adicionarNota,
+      removerNota: removerNota
+    };
+    secao.appendChild(new _formNotas2.default(props));
+  }
 
-    // secao.innerHTML = conteudoSecao;
+  // secao.innerHTML = conteudoSecao;
 };
 
 window.editarFormulario = function (posicao) {
-    return listaNotas.edita(posicao);
+  return listaNotas.edita(posicao);
 };
 
 window.adicionarNota = function (inputTitulo, textareaTexto, formulario, posicao) {
-    if (listaNotas.pega(posicao)) {
-        listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
-    } else {
-        listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
-        formulario.reset();
-    }
+  if (listaNotas.pega(posicao)) {
+    listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
+  } else {
+    listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
+    formulario.reset();
+  }
 };
 
 window.removerNota = function (evento, posicao) {
-    evento.stopPropagation();
-    listaNotas.remove(posicao);
+  evento.stopPropagation();
+  listaNotas.remove(posicao);
 };
 
 /***/ }),
@@ -186,7 +192,7 @@ window.removerNota = function (evento, posicao) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -200,53 +206,53 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ListaNotas = function () {
-    function ListaNotas(observador) {
-        _classCallCheck(this, ListaNotas);
+  function ListaNotas(observador) {
+    _classCallCheck(this, ListaNotas);
 
-        this._listaInterna = [];
-        this._observador = observador;
+    this._listaInterna = [];
+    this._observador = observador;
+  }
+
+  _createClass(ListaNotas, [{
+    key: 'adiciona',
+    value: function adiciona(novoTitulo, novoTexto) {
+      var nota = new _nota2.default(novoTitulo, novoTexto);
+      this._listaInterna.push(nota);
+      this._observador();
     }
+  }, {
+    key: 'remove',
+    value: function remove(posicao, quantidade) {
+      this._listaInterna.splice(posicao, 1);
+      this._observador();
+    }
+  }, {
+    key: 'edita',
+    value: function edita(posicao) {
+      this._listaInterna[posicao].editando = true;
+      this._observador();
+    }
+  }, {
+    key: 'salva',
+    value: function salva(posicao, novoTitulo, novoTexto) {
+      this._listaInterna[posicao].titulo = novoTitulo;
+      this._listaInterna[posicao].texto = novoTexto;
+      this._listaInterna[posicao].editando = false;
+      this._observador();
+    }
+  }, {
+    key: 'pega',
+    value: function pega(posicao) {
+      return this._listaInterna[posicao];
+    }
+  }, {
+    key: 'contaTotal',
+    value: function contaTotal() {
+      return this._listaInterna.length;
+    }
+  }]);
 
-    _createClass(ListaNotas, [{
-        key: 'adiciona',
-        value: function adiciona(novoTitulo, novoTexto) {
-            var nota = new _nota2.default(novoTitulo, novoTexto);
-            this._listaInterna.push(nota);
-            this._observador();
-        }
-    }, {
-        key: 'remove',
-        value: function remove(posicao, quantidade) {
-            this._listaInterna.splice(posicao, 1);
-            this._observador();
-        }
-    }, {
-        key: 'edita',
-        value: function edita(posicao) {
-            this._listaInterna[posicao].editando = true;
-            this._observador();
-        }
-    }, {
-        key: 'salva',
-        value: function salva(posicao, novoTitulo, novoTexto) {
-            this._listaInterna[posicao].titulo = novoTitulo;
-            this._listaInterna[posicao].texto = novoTexto;
-            this._listaInterna[posicao].editando = false;
-            this._observador();
-        }
-    }, {
-        key: 'pega',
-        value: function pega(posicao) {
-            return this._listaInterna[posicao];
-        }
-    }, {
-        key: 'contaTotal',
-        value: function contaTotal() {
-            return this._listaInterna.length;
-        }
-    }]);
-
-    return ListaNotas;
+  return ListaNotas;
 }();
 
 ;
@@ -261,7 +267,7 @@ exports.default = ListaNotas;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -269,41 +275,41 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Nota = function () {
-    function Nota(novoTitulo, novoTexto) {
-        _classCallCheck(this, Nota);
+  function Nota(novoTitulo, novoTexto) {
+    _classCallCheck(this, Nota);
 
-        this._titulo = novoTitulo;
-        this._texto = novoTexto;
-        this._editando = false;
+    this._titulo = novoTitulo;
+    this._texto = novoTexto;
+    this._editando = false;
+  }
+
+  _createClass(Nota, [{
+    key: "titulo",
+    get: function get() {
+      return this._titulo;
+    },
+    set: function set(novoTitulo) {
+      this._titulo = novoTitulo;
     }
+  }, {
+    key: "texto",
+    get: function get() {
+      return this._texto;
+    },
+    set: function set(novoTexto) {
+      this._texto = novoTexto;
+    }
+  }, {
+    key: "editando",
+    get: function get() {
+      return this._editando;
+    },
+    set: function set(novoEditando) {
+      this._editando = novoEditando;
+    }
+  }]);
 
-    _createClass(Nota, [{
-        key: "titulo",
-        get: function get() {
-            return this._titulo;
-        },
-        set: function set(novoTitulo) {
-            this._titulo = novoTitulo;
-        }
-    }, {
-        key: "texto",
-        get: function get() {
-            return this._texto;
-        },
-        set: function set(novoTexto) {
-            this._texto = novoTexto;
-        }
-    }, {
-        key: "editando",
-        get: function get() {
-            return this._editando;
-        },
-        set: function set(novoEditando) {
-            this._editando = novoEditando;
-        }
-    }]);
-
-    return Nota;
+  return Nota;
 }();
 
 exports.default = Nota;
@@ -412,15 +418,22 @@ function FormNotas(propriedades) {
         editarFormulario = propriedades.editarFormulario;
 
 
-    var inputTitulo = criaInputTitulo(propriedades),
-        textareaTexto = criaTextareaTexto(propriedades),
-        buttonConcluido = criaButtonConcluir(propriedades, inputTitulo, textareaTexto, formNotas);
+    var inputTitulo = criaInputTitulo(propriedades);
+    var textareaTexto = criaTextareaTexto(propriedades);
+    var buttonConcluido = criaButtonConcluir(propriedades, inputTitulo, textareaTexto, formNotas);
+
+    var funcaoClick = void 0;
+    if (propriedades.notaAtual.editando === true) {
+        funcaoClick = function funcaoClick() {};
+    } else {
+        funcaoClick = function funcaoClick() {
+            propriedades.editarFormulario(propriedades.posicao);
+        };
+    }
 
     var props = {
         className: 'note',
-        click: notaAtual.editando ? function () {} : function () {
-            return editarFormulario(posicao);
-        },
+        click: funcaoClick,
         children: [inputTitulo, textareaTexto, buttonConcluido]
     };
 

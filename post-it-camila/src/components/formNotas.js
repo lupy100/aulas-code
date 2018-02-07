@@ -3,7 +3,9 @@ import FormInput from './formInput.js';
 import FormTextarea from './formTextarea.js';
 import FormButton from './formButton.js';
 
-const criaInputTitulo = ({ notaAtual }) => {
+const criaInputTitulo = ({
+    notaAtual
+}) => {
     // immutable
     const props = {
         className: 'note__title',
@@ -13,17 +15,19 @@ const criaInputTitulo = ({ notaAtual }) => {
         readonly: notaAtual.editando ? false : true,
         value: notaAtual.titulo
     };
-    
+
     return new FormInput(props);
 };
 
-const criaTextareaTexto = ({ notaAtual }) => {
+const criaTextareaTexto = ({
+    notaAtual
+}) => {
     // immutable
     const props = {
-        className: 'note__body', 
-        name: 'texto', 
-        placeholder: 'Criar uma nota...', 
-        rows: 5, 
+        className: 'note__body',
+        name: 'texto',
+        placeholder: 'Criar uma nota...',
+        rows: 5,
         readonly: notaAtual.editando ? false : true,
         children: notaAtual.texto
     };
@@ -31,11 +35,16 @@ const criaTextareaTexto = ({ notaAtual }) => {
     return new FormTextarea(props);
 };
 
-const criaButtonConcluir = ({ posicao, nota, adicionarNota, salvarNota }, inputTitulo, textareaTexto, formNotas) => {
+const criaButtonConcluir = ({
+    posicao,
+    nota,
+    adicionarNota,
+    salvarNota
+}, inputTitulo, textareaTexto, formNotas) => {
     // immutable
     const props = {
-        className: 'note__control', 
-        type: 'button', 
+        className: 'note__control',
+        type: 'button',
         children: 'Concluído',
         click: () => adicionarNota(inputTitulo, textareaTexto, formNotas, posicao)
     };
@@ -43,30 +52,48 @@ const criaButtonConcluir = ({ posicao, nota, adicionarNota, salvarNota }, inputT
     return new FormButton(props);
 };
 
-const criaButtonRemover = ({ posicao, removerNota}) => {
+const criaButtonRemover = ({
+    posicao,
+    removerNota
+}) => {
     // immutable
     const props = {
-        className: 'note__control', 
-        type: 'button', 
+        className: 'note__control',
+        type: 'button',
         children: '<i class="fa fa-times" aria-hidden="true"></i>',
         click: event => removerNota(event, posicao)
     };
-    
+
     return new FormButton(props);
 };
 
 
 function FormNotas(propriedades) {
     // destructuring
-    const { posicao, notaAtual, editarFormulario } = propriedades;
+    const {
+        posicao,
+        notaAtual,
+        editarFormulario
+    } = propriedades;
 
-    let inputTitulo = criaInputTitulo(propriedades),
-        textareaTexto = criaTextareaTexto(propriedades),
-        buttonConcluido = criaButtonConcluir(propriedades, inputTitulo, textareaTexto, formNotas);
-    
+    let inputTitulo = criaInputTitulo(propriedades);
+    let textareaTexto = criaTextareaTexto(propriedades);
+    let buttonConcluido = criaButtonConcluir(propriedades, inputTitulo, textareaTexto, formNotas);
+
+    let funcaoClick;
+    if (propriedades.notaAtual.editando === true) {
+        funcaoClick = function() {
+            
+        };
+    } else {
+        funcaoClick = function() {
+            propriedades.editarFormulario(propriedades.posicao);
+        };
+    }
+
     let props = {
         className: 'note',
-        click: notaAtual.editando ? () => {} : () => editarFormulario(posicao),
+        click: funcaoClick,
         children: [inputTitulo, textareaTexto, buttonConcluido]
     };
 
