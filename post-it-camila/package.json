@@ -12,12 +12,9 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel js -d lib --watch",
     "start": "webpack --config webpack.config.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/code-xp-front/post-it.git"
   },
   "author": "",
   "license": "ISC",
