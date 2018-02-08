@@ -3,106 +3,66 @@ import FormInput from './formInput.js';
 import FormTextarea from './formTextarea.js';
 import FormButton from './formButton.js';
 
-const criaInputTitulo = ({
-    notaAtual
-}) => {
-    // immutable
-    const props = {
+// destructuring / immutable
+// extract function
+// variable shorthand declaration
+function FormNotas(props) {
+    let formNotas;
+    
+    let inputTitulo = new FormInput({
         className: 'note__title',
         type: 'text',
         name: 'titulo',
         placeholder: 'Título',
-        readonly: notaAtual.editando ? false : true,
-        value: notaAtual.titulo
-    };
+        readonly: !props.notaAtual.editando,
+        value: props.notaAtual.titulo
+    });
+    
+    let textareaTexto = new FormTextarea({
+        className: 'note__body', 
+        name: 'texto', 
+        placeholder: 'Criar uma nota...', 
+        rows: 5, 
+        readonly: !props.notaAtual.editando,
+        children: props.notaAtual.texto
+    });
+    
+    let children;
+    let click;
 
-    return new FormInput(props);
-};
+    if (props.notaAtual.editando) {
+        let buttonRemover = new FormButton({
+            className: 'note__control', 
+            type: 'button', 
+            children: '<i class="fa fa-times" aria-hidden="true"></i>',
+            click: event => {
+                props.removerNota(event, props.posicao);
+            }
+        });
 
-const criaTextareaTexto = ({
-    notaAtual
-}) => {
-    // immutable
-    const props = {
-        className: 'note__body',
-        name: 'texto',
-        placeholder: 'Criar uma nota...',
-        rows: 5,
-        readonly: notaAtual.editando ? false : true,
-        children: notaAtual.texto
-    };
+        let buttonConcluido = new FormButton({
+            className: 'note__control', 
+            type: 'button', 
+            children: 'Concluído',
+            click: () => {
+                props.adicionarNota(inputTitulo, textareaTexto, formNotas, props.posicao);
+            }
+        });
 
-    return new FormTextarea(props);
-};
-
-const criaButtonConcluir = ({
-    posicao,
-    nota,
-    adicionarNota,
-    salvarNota
-}, inputTitulo, textareaTexto, formNotas) => {
-    // immutable
-    const props = {
-        className: 'note__control',
-        type: 'button',
-        children: 'Concluído',
-        click: () => adicionarNota(inputTitulo, textareaTexto, formNotas, posicao)
-    };
-
-    return new FormButton(props);
-};
-
-const criaButtonRemover = ({
-    posicao,
-    removerNota
-}) => {
-    // immutable
-    const props = {
-        className: 'note__control',
-        type: 'button',
-        children: '<i class="fa fa-times" aria-hidden="true"></i>',
-        click: event => removerNota(event, posicao)
-    };
-
-    return new FormButton(props);
-};
-
-
-function FormNotas(propriedades) {
-    // destructuring
-    const {
-        posicao,
-        notaAtual,
-        editarFormulario
-    } = propriedades;
-
-    let inputTitulo = criaInputTitulo(propriedades);
-    let textareaTexto = criaTextareaTexto(propriedades);
-    let buttonConcluido = criaButtonConcluir(propriedades, inputTitulo, textareaTexto, formNotas);
-
-    let funcaoClick;
-    if (propriedades.notaAtual.editando === true) {
-        funcaoClick = function() {
-            
-        };
+        children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
     } else {
-        funcaoClick = function() {
-            propriedades.editarFormulario(propriedades.posicao);
-        };
+        children = [inputTitulo, textareaTexto];
+
+        click = () => {
+            props.editarFormulario(props.posicao);
+        }
     }
 
-    let props = {
+    formNotas = new Form({
         className: 'note',
-        click: funcaoClick,
-        children: [inputTitulo, textareaTexto, buttonConcluido]
-    };
-
-    if (notaAtual.editando) {
-        let buttonRemover = criaButtonRemover(propriedades);
-        props.children = [buttonRemover].concat(props.children);
-    }
-
-    let formNotas = new Form(props);
+        children: children,
+        click: click
+    });
 
     return formNotas;
 }
