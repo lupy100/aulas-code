@@ -20,5 +20,14 @@ _[Luis Gustavo](https://github.com/mister-luis "Link para perfil no GitHub do mi
 
 _[Vinicios Oliveira](https://github.com/viniosouza "Link para perfil no GitHub do viniosouza")_ Brach: [Vinicios2](https://github.com/lupy100/aulas-code/tree/Vinicios2)
 
-**"Se quer ir rápido, vá sozinho. Se quer ir longe, vá em grupo."**
--Provérbio Africano
+***
+
+<p align="center">
+  <b> "Se quer ir rápido, vá sozinho. Se quer ir longe, vá em grupo." </b>
+  <br>
+  -Provérbio Africano
+</p>
+
+***
+
+
