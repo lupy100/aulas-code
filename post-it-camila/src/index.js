@@ -1,10 +1,3 @@
-//array de notas/ variavel que representa a nota
-// var notas = [];
-// const calcularAreaCirculo = (raio) => {
-// 	const PI = 3.14;
-// 	return PI * raio * raio;
-// };
-
 import ListaNota from './listaNota.js'
 import Notas from './notas.js'
 

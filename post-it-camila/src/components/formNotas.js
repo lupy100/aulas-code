@@ -75,50 +75,38 @@ function criarComponentButtonConcluido(adicionarNota, posicao, notaAlterada) {
 
 
 
-function FormNotas(props) {
-
+function FormNotas({ notaAtual, posicao, adicionarNota, removerNota, editarFormulario }) {
+  // Nao podemos alterar o parametro que recebemos
   let notaAlterada = new Nota(props.notaAtual.titulo, props.notaAtual.texto, props.notaAtual.editando)
-
   let inputTitulo = criarComponentInputTitulo(notaAlterada);
-
-
   let textArea = criarComponentTextArea(notaAlterada);
 
+  let props = { className: 'nota' }
   let children;
-  let onClick;
+
+  // let inputTitulo = criaInputTitulo(notaAtual),
+  //   textareaTexto = criaTextareaTexto(props),
+  //   buttonConcluido = criaButtonConcluir(props, inputTitulo, textareaTexto, formNotas);
 
 
-  let inputTitulo = criaInputTitulo(props.notaAtual),
-    textareaTexto = criaTextareaTexto(props),
-    buttonConcluido = criaButtonConcluir(props, inputTitulo, textareaTexto, formNotas);
+  if (notaAlterada.editando === true) {
+    let buttonRemover = criarComponentButtonremover(removerNota, posicao);
 
-  let funcaoClick;
-  if (props.notaAtual.editando === true) {
-    let buttonRemover = criarComponentButtonremover(props.removerNota, props.posicao);
+    let buttonConcluido = criarComponentButtonConcluido(adicionarNota, posicao)
+
+    children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido]
   } else {
-    let buttonConcluido = criarComponentButtonConcluido(props.adicionarNota, props.posicao)
+    children = [inputTitulo, textareaTexto]
+    props.onClick = () => {
+      editarFormulario(posicao)
+
+    }
   }
 
-  formNotas = React.createElement(form, formProps, children)
+
+  return React.createElement(form, formProps, children)
 
 
-
-  let props = {
-    className: 'note',
-    click: funcaoClick,
-    children: [inputTitulo, textareaTexto, buttonConcluido]
-
-  };
-
-  // if (notaAtual.editando) {
-  //   let buttonRemover = criaButtonRemover(props);
-  //   let outroArray = [buttonRemover];
-  //   props.children = outroArray.concat(props.children);
-  // }
-
-  let formNotas = new Form(props);
-
-  return formNotas;
 }
 
 export default FormNotas;

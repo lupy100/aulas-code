@@ -80,13 +80,6 @@ var _notas2 = _interopRequireDefault(_notas);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//array de notas/ variavel que representa a nota
-// var notas = [];
-// const calcularAreaCirculo = (raio) => {
-// 	const PI = 3.14;
-// 	return PI * raio * raio;
-// };
-
 var secao = document.getElementsByClassName('notes')[0];
 var observarMudancas = function observarMudancas() {
   atualizarSecao(secao);
@@ -248,12 +241,18 @@ exports.default = listaNotas;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Notas = function () {
   function Notas(novoTitulo, novoTexto) {
+    var novoEditando = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
     _classCallCheck(this, Notas);
 
     // modificadores visibilidade: getters/setters
@@ -298,6 +297,8 @@ var Notas = function () {
 
   return Notas;
 }();
+
+exports.default = Notas;
 
 /***/ })
 /******/ ]);
