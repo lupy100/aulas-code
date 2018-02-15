@@ -1,17 +1,4 @@
-function Form(props) {
-    let form = document.createElement('form');
 
-    // destructuring
-    form.setAttribute('class', props.className);
-    
-    // forEach
-    for (var i = 0; i < props.children.length; i++) {
-        form.appendChild(props.children[i]);
-    }
+import React from 'react'
 
-    form.addEventListener("click", props.click);
-    
-    return form;
-}
-
-export default Form;
+export default (props, children) => React.createElement('form', props, children)
