@@ -159,10 +159,6 @@ var _formNotas2 = _interopRequireDefault(_formNotas);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var secao = document.getElementsByClassName('notes')[0];
-// import FormInput from './components/formInput.js';
-// import FormTextarea from './components/formTextarea.js';
-// import FormButton from './components/formButton.js';
-
 var observaMudancasNaLista = function observaMudancasNaLista() {
     atualizarSecao(secao);
 };
@@ -170,8 +166,6 @@ var observaMudancasNaLista = function observaMudancasNaLista() {
 var listaNotas = new _listaNotas2.default(observaMudancasNaLista);
 
 var atualizarSecao = function atualizarSecao(secao) {
-    // let conteudoSecao = "";
-
     while (secao.firstChild) {
         secao.removeChild(secao.firstChild);
     }
@@ -179,70 +173,24 @@ var atualizarSecao = function atualizarSecao(secao) {
     for (var posicao = 0; posicao < listaNotas.contaTotal(); posicao++) {
         var notaAtual = listaNotas.pega(posicao);
 
-        // let formNotas = document.createElement('form');
-        // formNotas.setAttribute('class', 'note');
-
-        // let inputTitulo = new FormInput({
-        //     className: 'note__title',
-        //     type: 'text',
-        //     name: 'titulo',
-        //     placeholder: 'Título',
-        //     value: notaAtual.titulo
-        // });
-
-        // let textareaTexto = new FormTextarea({
-        //     className: 'note__body', 
-        //     name: 'texto', 
-        //     placeholder: 'Criar uma nota...', 
-        //     children: notaAtual.texto
-        // });
-
-        // let buttonConcluido = new FormButton({
-        //     className: 'note__control', 
-        //     type: 'button', 
-        //     value: 'Concluído',
-        //     click: () => {
-        //         adicionarNota(formNotas, inputTitulo, textareaTexto, posicao);
-        //     }
-        // });
-
-        // formNotas.appendChild(inputTitulo);
-        // formNotas.appendChild(textareaTexto);
-        // formNotas.appendChild(buttonConcluido);
-
-        // if (notaAtual.editando) {
-        //     conteudoSecao += `<form class="note">
-        //                         <input class="note__title" type="text" name="titulo" value="${notaAtual.titulo}" placeholder="Título">
-        //                         <textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">
-        //                             ${notaAtual.texto}
-        //                         </textarea>
-        //                         <button class="note__control" type="button" onclick="adicionarNota(this.form.titulo, this.form.texto, this.form, ${posicao})">
-        //                             Concluído
-        //                         </button>
-        //                       </form>`;
-        // } else {
-        //     conteudoSecao += `<form class="note" onclick="editarFormulario(${posicao})">
-        //                         <button class="note__control" type="button" onclick="removerNota(event, ${posicao})">
-        //                             <i class="fa fa-times" aria-hidden="true"></i>
-        //                         </button>
-        //                         <h1 class="note__title">${notaAtual.titulo}</h1>
-        //                         <p class="note__body">${notaAtual.texto}</p>
-        //                       </form>`;
-        // }
-
         // property shorthand
-        var props = { posicao: posicao, notaAtual: notaAtual, editarFormulario: editarFormulario, adicionarNota: adicionarNota, removerNota: removerNota };
+        var props = {
+            posicao: posicao,
+            notaAtual: notaAtual,
+            editarFormulario: editarFormulario,
+            adicionarNota: adicionarNota,
+            removerNota: removerNota
+        };
+
         secao.appendChild(new _formNotas2.default(props));
     }
-
-    // secao.innerHTML = conteudoSecao;
 };
 
-window.editarFormulario = function (posicao) {
+var editarFormulario = function editarFormulario(posicao) {
     return listaNotas.edita(posicao);
 };
 
-window.adicionarNota = function (inputTitulo, textareaTexto, formulario, posicao) {
+var adicionarNota = function adicionarNota(inputTitulo, textareaTexto, formulario, posicao) {
     if (listaNotas.pega(posicao)) {
         listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
     } else {
@@ -251,10 +199,12 @@ window.adicionarNota = function (inputTitulo, textareaTexto, formulario, posicao
     }
 };
 
-window.removerNota = function (evento, posicao) {
+var removerNota = function removerNota(evento, posicao) {
     evento.stopPropagation();
     listaNotas.remove(posicao);
 };
+
+window.adicionarNota = adicionarNota;
 
 /***/ }),
 /* 1 */
@@ -264,7 +214,7 @@ window.removerNota = function (evento, posicao) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -278,53 +228,53 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ListaNotas = function () {
-    function ListaNotas(observador) {
-        _classCallCheck(this, ListaNotas);
+  function ListaNotas(observador) {
+    _classCallCheck(this, ListaNotas);
 
-        this._listaInterna = [];
-        this._observador = observador;
+    this._listaInterna = [];
+    this._observador = observador;
+  }
+
+  _createClass(ListaNotas, [{
+    key: 'adiciona',
+    value: function adiciona(novoTitulo, novoTexto) {
+      var nota = new _nota2.default(novoTitulo, novoTexto);
+      this._listaInterna.push(nota);
+      this._observador();
     }
+  }, {
+    key: 'remove',
+    value: function remove(posicao, quantidade) {
+      this._listaInterna.splice(posicao, 1);
+      this._observador();
+    }
+  }, {
+    key: 'edita',
+    value: function edita(posicao) {
+      this._listaInterna[posicao].editando = true;
+      this._observador();
+    }
+  }, {
+    key: 'salva',
+    value: function salva(posicao, novoTitulo, novoTexto) {
+      this._listaInterna[posicao].titulo = novoTitulo;
+      this._listaInterna[posicao].texto = novoTexto;
+      this._listaInterna[posicao].editando = false;
+      this._observador();
+    }
+  }, {
+    key: 'pega',
+    value: function pega(posicao) {
+      return this._listaInterna[posicao];
+    }
+  }, {
+    key: 'contaTotal',
+    value: function contaTotal() {
+      return this._listaInterna.length;
+    }
+  }]);
 
-    _createClass(ListaNotas, [{
-        key: 'adiciona',
-        value: function adiciona(novoTitulo, novoTexto) {
-            var nota = new _nota2.default(novoTitulo, novoTexto);
-            this._listaInterna.push(nota);
-            this._observador();
-        }
-    }, {
-        key: 'remove',
-        value: function remove(posicao, quantidade) {
-            this._listaInterna.splice(posicao, 1);
-            this._observador();
-        }
-    }, {
-        key: 'edita',
-        value: function edita(posicao) {
-            this._listaInterna[posicao].editando = true;
-            this._observador();
-        }
-    }, {
-        key: 'salva',
-        value: function salva(posicao, novoTitulo, novoTexto) {
-            this._listaInterna[posicao].titulo = novoTitulo;
-            this._listaInterna[posicao].texto = novoTexto;
-            this._listaInterna[posicao].editando = false;
-            this._observador();
-        }
-    }, {
-        key: 'pega',
-        value: function pega(posicao) {
-            return this._listaInterna[posicao];
-        }
-    }, {
-        key: 'contaTotal',
-        value: function contaTotal() {
-            return this._listaInterna.length;
-        }
-    }]);
-
-    return ListaNotas;
+  return ListaNotas;
 }();
 
 ;
@@ -339,7 +289,7 @@ exports.default = ListaNotas;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -347,41 +297,41 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Nota = function () {
-    function Nota(novoTitulo, novoTexto) {
-        _classCallCheck(this, Nota);
+  function Nota(novoTitulo, novoTexto) {
+    _classCallCheck(this, Nota);
 
-        this._titulo = novoTitulo;
-        this._texto = novoTexto;
-        this._editando = false;
+    this._titulo = novoTitulo;
+    this._texto = novoTexto;
+    this._editando = false;
+  }
+
+  _createClass(Nota, [{
+    key: "titulo",
+    get: function get() {
+      return this._titulo;
+    },
+    set: function set(novoTitulo) {
+      this._titulo = novoTitulo;
     }
+  }, {
+    key: "texto",
+    get: function get() {
+      return this._texto;
+    },
+    set: function set(novoTexto) {
+      this._texto = novoTexto;
+    }
+  }, {
+    key: "editando",
+    get: function get() {
+      return this._editando;
+    },
+    set: function set(novoEditando) {
+      this._editando = novoEditando;
+    }
+  }]);
 
-    _createClass(Nota, [{
-        key: "titulo",
-        get: function get() {
-            return this._titulo;
-        },
-        set: function set(novoTitulo) {
-            this._titulo = novoTitulo;
-        }
-    }, {
-        key: "texto",
-        get: function get() {
-            return this._texto;
-        },
-        set: function set(novoTexto) {
-            this._texto = novoTexto;
-        }
-    }, {
-        key: "editando",
-        get: function get() {
-            return this._editando;
-        },
-        set: function set(novoEditando) {
-            this._editando = novoEditando;
-        }
-    }]);
-
-    return Nota;
+  return Nota;
 }();
 
 exports.default = Nota;
@@ -415,99 +365,66 @@ var _formButton2 = _interopRequireDefault(_formButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var criaInputTitulo = function criaInputTitulo(_ref) {
-    var notaAtual = _ref.notaAtual;
+// destructuring / immutable
+// extract function
+// variable shorthand declaration
+function FormNotas(props) {
+    var formNotas = void 0;
 
-    // immutable
-    var props = {
+    var inputTitulo = new _formInput2.default({
         className: 'note__title',
         type: 'text',
         name: 'titulo',
         placeholder: 'Título',
-        readonly: notaAtual.editando ? false : true,
-        value: notaAtual.titulo
-    };
+        readonly: !props.notaAtual.editando,
+        value: props.notaAtual.titulo
+    });
 
-    return new _formInput2.default(props);
-};
-
-var criaTextareaTexto = function criaTextareaTexto(_ref2) {
-    var notaAtual = _ref2.notaAtual;
-
-    // immutable
-    var props = {
+    var textareaTexto = new _formTextarea2.default({
         className: 'note__body',
         name: 'texto',
         placeholder: 'Criar uma nota...',
         rows: 5,
-        readonly: notaAtual.editando ? false : true,
-        children: notaAtual.texto
-    };
+        readonly: !props.notaAtual.editando,
+        children: props.notaAtual.texto
+    });
 
-    return new _formTextarea2.default(props);
-};
+    var children = void 0;
+    var click = void 0;
 
-var criaButtonConcluir = function criaButtonConcluir(_ref3, inputTitulo, textareaTexto, formNotas) {
-    var posicao = _ref3.posicao,
-        nota = _ref3.nota,
-        adicionarNota = _ref3.adicionarNota,
-        salvarNota = _ref3.salvarNota;
+    if (props.notaAtual.editando) {
+        var buttonRemover = new _formButton2.default({
+            className: 'note__control',
+            type: 'button',
+            children: '<i class="fa fa-times" aria-hidden="true"></i>',
+            click: function click(event) {
+                props.removerNota(event, props.posicao);
+            }
+        });
 
-    // immutable
-    var props = {
-        className: 'note__control',
-        type: 'button',
-        children: 'Concluído',
-        click: function click() {
-            return adicionarNota(inputTitulo, textareaTexto, formNotas, posicao);
-        }
-    };
+        var buttonConcluido = new _formButton2.default({
+            className: 'note__control',
+            type: 'button',
+            children: 'Concluído',
+            click: function click() {
+                props.adicionarNota(inputTitulo, textareaTexto, formNotas, props.posicao);
+            }
+        });
 
-    return new _formButton2.default(props);
-};
+        children = [buttonRemover, inputTitulo, textareaTexto, buttonConcluido];
+    } else {
+        children = [inputTitulo, textareaTexto];
 
-var criaButtonRemover = function criaButtonRemover(_ref4) {
-    var posicao = _ref4.posicao,
-        removerNota = _ref4.removerNota;
-
-    // immutable
-    var props = {
-        className: 'note__control',
-        type: 'button',
-        children: '<i class="fa fa-times" aria-hidden="true"></i>',
-        click: function click(event) {
-            return removerNota(event, posicao);
-        }
-    };
-
-    return new _formButton2.default(props);
-};
-
-function FormNotas(propriedades) {
-    // destructuring
-    var posicao = propriedades.posicao,
-        notaAtual = propriedades.notaAtual,
-        editarFormulario = propriedades.editarFormulario;
-
-
-    var inputTitulo = criaInputTitulo(propriedades),
-        textareaTexto = criaTextareaTexto(propriedades),
-        buttonConcluido = criaButtonConcluir(propriedades, inputTitulo, textareaTexto, formNotas);
-
-    var props = {
-        className: 'note',
-        click: notaAtual.editando ? function () {} : function () {
-            return editarFormulario(posicao);
-        },
-        children: [inputTitulo, textareaTexto, buttonConcluido]
-    };
-
-    if (notaAtual.editando) {
-        var buttonRemover = criaButtonRemover(propriedades);
-        props.children = [buttonRemover].concat(props.children);
+        click = function click() {
+            props.editarFormulario(props.posicao);
+        };
     }
 
-    var formNotas = new _form2.default(props);
+    formNotas = new _form2.default({
+        className: 'note',
+        children: children,
+        click: click
+    });
 
     return formNotas;
 }
@@ -536,7 +453,9 @@ function Form(props) {
         form.appendChild(props.children[i]);
     }
 
-    form.addEventListener("click", props.click);
+    if (props.click) {
+        form.addEventListener("click", props.click);
+    }
 
     return form;
 }
@@ -617,16 +536,16 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 // props param
-function FormButton(propriedades) {
+function FormButton(props) {
     var formButton = document.createElement('button');
 
     // destructuring
-    formButton.setAttribute('class', propriedades.className);
-    formButton.setAttribute('type', propriedades.type);
+    formButton.setAttribute('class', props.className);
+    formButton.setAttribute('type', props.type);
 
-    formButton.addEventListener('click', propriedades.click);
+    formButton.addEventListener('click', props.click);
 
-    formButton.innerHTML = propriedades.children;
+    formButton.innerHTML = props.children;
 
     return formButton;
 }
