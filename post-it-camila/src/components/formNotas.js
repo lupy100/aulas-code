@@ -4,7 +4,6 @@ import Form from './form.js'
 import FormInput from './formInput'
 import FormTextarea from './formTextarea'
 import FormButton from './formButton'
-import FormInput from './formInput'
 import Nota from '../nota'
 
 function FormNotas({
