@@ -1,5 +1,46 @@
 "use strict";
 
+<<<<<<< HEAD
+//array de notas/ variavel que representa a nota
+// var notas = [];
+// const calcularAreaCirculo = (raio) => {
+// 	const PI = 3.14;
+// 	return PI * raio * raio;
+// }
+
+var listaNotas = {
+  secao: document.getElementsByClassName("notes")[0],
+  listaInterna: [],
+  adiciona: function adiciona(titulo, texto) {
+    var nota = {
+      titulo: titulo,
+      texto: texto,
+      editando: false
+    };
+    this.listaInterna.push(nota);
+    atualizarSecao(this.secao);
+  },
+  remove: function remove(index) {
+    this.listaInterna.splice(index, 1);
+    atualizarSecao(this.secao);
+  },
+  edita: function edita(index) {
+    this.listaInterna[index].editando = true;
+    atualizarSecao(this.secao);
+  },
+
+  salva: function salva(index, novoTitulo, novoTexto) {
+    undefined.listaInterna[index].titulo = novoTitulo;
+    undefined.listaInterna[index].texto = novoTexto;
+    undefined.listaInterna[index].editando = false;
+    atualizarSecao(undefined.secao);
+  },
+  pegaNota: function pegaNota(index) {
+    return this.listaInterna[index];
+  },
+  contaItem: function contaItem() {
+    return this.listaInterna.length;
+=======
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -43,6 +84,7 @@ var Nota = function () {
     this._titulo = novoTitulo;
     this._texto = novoTexto;
     this._editando = false;
+>>>>>>> master
   }
 
   _createClass(Nota, [{
