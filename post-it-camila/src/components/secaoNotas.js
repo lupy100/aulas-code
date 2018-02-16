@@ -1,27 +1,28 @@
-import React from 'react';
-import section from './section';
-import FormNotas from './FormNotas0'
-function SecaoNotas({listaNotas, removerNota, adicionarNota, editarFormulario}){
-    const props = {className:'notes'};
+import React from 'react'
+import Section from './section'
+import FormNotas from './formNotas'
 
-    const children =[];
-    for(let i=0; i<listaNotas.contaTotal();i++){
-        const props = {
-            notaAtual:i,
-            removerNota:listaNotas.pega(i),
-            adicionarNota: adicionarNota,
-            removerNota: removerNota,
-            editarFormulario: editarFormulario,
-            posicao:i
-        }
-        let FormNotas = criarFormNotas();
-        children.push();
-    }
-}
+function SecaoNotas({listaNotas}) {
+  const props ={className:"notes"}
+  const children = [];
 
-function criarFormNotas{
-    const props{
-        //    cronograma  pronto  escopo   fechado
-    }
-    return React.createElement('form', props. children);
+  function criaFormNotas() {
+    const propsFormNotas = {
+      posicao: listaNotas.posicao, 
+      notaAtual: listaNotas.pega(posicao), 
+      editarFormulario: listaNotas.editarFormulario, 
+      adicionarNota: listaNotas.adicionarNota, 
+      removerNota: listaNotas.removerNota
+    } 
+    const childrenFormNotas = []
+    return React.createElement(FormNotas,propsFormNotas,childrenFormNotas)
+  }
+  
+  for (let i = 0; i < listaNotas.contaTotal(); i++) {
+    let formNotas = criaFormNotas();
+
+    children.push(FormNotas);  
+  }
+
+  return React.createElement(Section,props,children);
 }
