@@ -11,6 +11,7 @@ function SecaoNotas({listaNotas, removerNota, adicionarNota, editarFormulario}){
             removerNota:listaNotas.pega(i),
             adicionarNota: adicionarNota,
             removerNota: removerNota,
+            editarFormulario: editarFormulario,
             posicao:i
         }
         let FormNotas = criarFormNotas();
@@ -20,7 +21,7 @@ function SecaoNotas({listaNotas, removerNota, adicionarNota, editarFormulario}){
 
 function criarFormNotas{
     const props{
-
+        //    cronograma  pronto  escopo   fechado
     }
     return React.createElement('form', props. children);
 }
