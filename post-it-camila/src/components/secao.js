@@ -3,7 +3,7 @@ import Section from './section'
 import FormNotas from './formNotas'
 
 //Retornaar um reactElement com formNotas
-function criaFormNotas() {
+function criaFormNotas(posicao, listaNotas, adicionarNota, removerNota, editarFormularios) {
 
     const propsFormNotas = {
         posicao: posicao,
@@ -13,7 +13,7 @@ function criaFormNotas() {
         editarFormularios: props.editarFormularios
     }
     let form = React.createElement(formNotas, propsFormNotas)
-    const children = []
+
 
     return React.createElement(formNotas, props, children)
 }
@@ -28,10 +28,22 @@ function SecaoNotas({ listaNotas, removerNota, adicionarNota }) {
     const children = []
 
     for (let posicao = 0; posicao < listaNotas.contaTotal(); posicao++) {
-        let formNotas = criaFormNotas();
+        let formNotas = criaFormNotas(posicao, props);
         children.push(FormNotas);
 
     }
+
+    // Children = props.listaNotas.map((notaAtual, indice) => (
+    //     criaFormNotas(posicao, props)
+    // ))
+
+
+    Children = listaNotas.map((notaAtual, indice) => {
+        return criaFormNotas(posicao, listaNotas, adicionarNota, removerNota, editarFormularios)
+    })
+        
+
+
 
     return React.createElement('form', props, children)
 }
