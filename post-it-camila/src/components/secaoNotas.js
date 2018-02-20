@@ -2,9 +2,11 @@ import React from 'react'
 import Section from './section'
 import FormNotas from './formNotas'
 
-function SecaoNotas({listaNotas}) {
-  const props ={className:"notes"}
-  const children = [];
+function SecaoNotas({posicao, notaAtual, listaNotas, adicionarNota, editarFormulario}) {
+  const propsSection ={className:"notes"}
+  const children = listaNotas.map((notaAtual, posicao) =>(
+      criaFormNotas(posicao, notaAtual, editarFormulario, adicionarNota, removerNota)
+  ));
 
   function criaFormNotas() {
     const propsFormNotas = {
