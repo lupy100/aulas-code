@@ -3,6 +3,7 @@ import Nota from '../nota'
 import ListaNotas from '../listaNotas'
 import FormNotas from './formNotas'
 import SectionNotas from './sectionNotas'
+import Icon from '../../dist/img/icon.png';
 
 
 function montaFormNotas(adicionarNota, removerNota, editarFormulario) {
@@ -69,6 +70,7 @@ class Page extends React.Component {
             <main {...props}>
                 {formNotas}
                 {sectionNotas}
+                <img src={Icon}/>
             </main>
         )
     }

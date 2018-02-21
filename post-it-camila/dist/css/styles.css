@@ -30,7 +30,8 @@
     font-weight: bold;
 }
 
-.note__title, .note__body {
+.note__title,
+.note__body {
     font-size: 14px;
     outline: 0;
     display: block;
