@@ -1,50 +1,52 @@
-import React from 'react'
-import Section from './section'
-import FormNotas from './formNotas'
+import React from "react";
+import Section from "./section";
+import FormNotas from "./formNotas";
 
 //Retornaar um reactElement com formNotas
-function criaFormNotas(posicao, listaNotas, adicionarNota, removerNota, editarFormularios) {
+function criaFormNotas(
+  posicao,
+  listaNota,
+  adicionarNota,
+  removerNota,
+  editarFormularios
+) {
+  const propsFormNotas = {
+    key: posicao,
+    posicao: posicao,
+    notaAtual: props.listaNota.pega(posicao),
+    removerNota: props.removerNota,
+    adicionarNota: props.adicionarNota,
+    editarFormularios: props.editarFormularios
+  };
+  let form = React.createElement(formNotas, propsFormNotas);
 
-    const propsFormNotas = {
-        posicao: posicao,
-        notaAtual: props.listaNotas.pega(posicao),
-        removerNota: props.removerNota,
-        adicionarNota: props.adicionarNota,
-        editarFormularios: props.editarFormularios
-    }
-    let form = React.createElement(formNotas, propsFormNotas)
-
-
-    return React.createElement(formNotas, props, children)
+  return <FormNotas {...props} />;
 }
 
-function SecaoNotas({ listaNotas, removerNota, adicionarNota }) {
+function SecaoNotas({ listaNota, removerNota, adicionarNota }) {
+  const props = {
+    className: "notes"
+  };
 
-    const props = {
-        className: 'notes',
+  const children = [];
 
-    }
+  for (let posicao = 0; posicao < listaNota.contaTotal(); posicao++) {
+    let formNota = criaFormNotas(posicao, props);
+    children.push(FormNotas);
+  }
 
-    const children = []
-
-    for (let posicao = 0; posicao < listaNotas.contaTotal(); posicao++) {
-        let formNotas = criaFormNotas(posicao, props);
-        children.push(FormNotas);
-
-    }
-
-    // Children = props.listaNotas.map((notaAtual, indice) => (
-    //     criaFormNotas(posicao, props)
-    // ))
-
-
-    Children = listaNotas.map((notaAtual, indice) => {
-        return criaFormNotas(posicao, listaNotas, adicionarNota, removerNota, editarFormularios)
-    })
-        
-
-
-
-    return React.createElement('form', props, children)
+  return (
+    <Section {...props}>
+      {listaNota.pegaTodos().map((notaAtual, indice) => {
+        return criaFormNotas(
+          posicao,
+          listaNota,
+          adicionarNota,
+          removerNota,
+          editarFormularios
+        );
+      })}
+    </Section>
+  );
 }
 export default SecaoNotas;

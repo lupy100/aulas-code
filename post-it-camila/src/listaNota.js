@@ -33,12 +33,15 @@ class listaNotas {
         this._observador(this);
     }
     pegaNota(index) {
-        return this[index];
+        return this._listaInterna[index]
     }
     contaItem() {
-        return this.length;
+        return this._listaInterna.length
     }
 
+    pegaTodos() {
+        return this._listaInterna
+    }
     // Lista
 };
 
