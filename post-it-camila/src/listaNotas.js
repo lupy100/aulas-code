@@ -34,6 +34,10 @@ class ListaNotas {
     return this._listaInterna[posicao];
   }
 
+  pegaTodos(){
+    return this._listaInterna
+  }
+
   contaTotal() {
     return this._listaInterna.length;
   }

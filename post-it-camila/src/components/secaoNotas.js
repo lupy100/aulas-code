@@ -3,7 +3,8 @@ import Section from './section'
 import FormNotas from './formNotas'
 
 function criaFormNotas(posicao, listaNotas, adicionarNota, removerNota, editarFormulario) {
-  const propsFormNotas = {
+  const props = {
+    key: posicao,
     posicao: posicao,
     notaAtual: listaNotas.pega(posicao),
     editarFormulario: editarFormulario,
@@ -11,17 +12,21 @@ function criaFormNotas(posicao, listaNotas, adicionarNota, removerNota, editarFo
     removerNota: removerNota
   }
 
-  return React.createElement(FormNotas, propsFormNotas)
+  return React.createElement(FormNotas, props)
 }
 
-function SecaoNotas({ listaNotas }) {
+function SecaoNotas({ listaNotas, adicionarNota, removerNota, editarFormulario }) {
   const props = { className: "notes" }
 
-  const children = listaNotas.map((notaAtual, posicao) => {
+  const children = listaNotas.pegaTodos().map((notaAtual, posicao) => {
     criaFormNotas(posicao, listaNotas, adicionarNota, removerNota, editarFormulario)
   })
 
-  return React.createElement(Section, props, children);
+  return (
+    <Section {...props}>
+      {children}
+    </Section>
+  )
 }
 
 export default SecaoNotas

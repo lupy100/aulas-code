@@ -1,6 +1,5 @@
 import React from 'react'
 
-function Section(props,children){
-  return React.createElement('section',props,children)
-} 
+const Section= ({...props,children})=><section {...props}> {children}</section>
+
 export default Section

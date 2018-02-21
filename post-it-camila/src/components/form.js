@@ -1,3 +1,5 @@
 import React from 'react'
 
-export default (props,children) => React.createElement("form",props,children)
+const Form = ({...props,children}) => <form {...props}> {children} </form>
+
+export default Form;
