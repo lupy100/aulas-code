@@ -1,46 +1,56 @@
-import Nota from './nota.js';
+import Nota from './nota.js'
 
 
 class ListaNotas {
   constructor(observador) {
-    this._listaInterna = [];
-    this._observador = observador;
+    this._listaInterna = []
+    this._observador = observador
   }
 
   adiciona(novoTitulo, novoTexto) {
-    let nota = new Nota(novoTitulo, novoTexto);
-    this._listaInterna.push(nota);
-    this._observador(this);
+    let nota = new Nota(this._listaInterna.length, novoTitulo, novoTexto)
+    this._listaInterna = this._listaInterna.concat(nota)
+    this._observador(this)
   }
 
-  remove(posicao, quantidade) {
-    this._listaInterna.splice(posicao, 1);
-    this._observador(this);
+  remove(posicao) {
+    this._listaInterna = this._listaInterna.filter(nota => nota.posicao !== posicao)
+    this._observador(this)
   }
 
   edita(posicao) {
-    this._listaInterna[posicao].editando = true;
-    this._observador(this);
+    this._listaInterna = this._listaInterna.map(nota => {
+      if (nota.posicao === posicao) {
+        return new Nota(posicao, nota.titulo, nota.texto, true)
+      } else {
+        return nota
+      }
+    })
+    this._observador(this)
   }
 
   salva(posicao, novoTitulo, novoTexto) {
-    this._listaInterna[posicao].titulo = novoTitulo;
-    this._listaInterna[posicao].texto = novoTexto;
-    this._listaInterna[posicao].editando = false;
-    this._observador(this);
+    this._listaInterna = this._listaInterna.map(nota => {
+      if (nota.posicao === posicao) {
+        return new Nota(posicao, novoTitulo, novoTexto, false)
+      } else {
+        return nota
+      }
+    })
+    this._observador(this)
   }
 
   pega(posicao) {
-    return this._listaInterna[posicao];
+    return this._listaInterna[posicao]
   }
 
-  pegaTodos(){
+  pegaTodos() {
     return this._listaInterna
   }
 
   contaTotal() {
-    return this._listaInterna.length;
+    return this._listaInterna.length
   }
 };
 
-export default ListaNotas;
+export default ListaNotas

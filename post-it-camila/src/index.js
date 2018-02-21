@@ -1,5 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Main from './components/main';
+import Page from './components/page'
 
-ReactDOM.render(React.createElement(Main,null),document.getElementById('root'))
+
+ReactDOM.render(
+    React.createElement(Page, null), 
+    document.getElementById('root')
+)
