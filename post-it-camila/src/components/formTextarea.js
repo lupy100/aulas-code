@@ -1,4 +1,8 @@
 import React from 'react'
 
-export default props => React.createElement('textarea',props)
+const formTextArea = props => (
+    <textarea {...props}/>
+)
+
+export default formTextArea;
 

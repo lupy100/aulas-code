@@ -10,6 +10,7 @@ function SecaoNotas({posicao, notaAtual, listaNotas, adicionarNota, editarFormul
 
   function criaFormNotas() {
     const propsFormNotas = {
+      key:posicao,
       posicao: listaNotas.posicao, 
       notaAtual: listaNotas.pega(posicao), 
       editarFormulario: listaNotas.editarFormulario, 
