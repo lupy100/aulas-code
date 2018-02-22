@@ -1,7 +1,7 @@
-const ADICIONAR_NOTA      = 'ADICIONAR_NOTA'
-const REMOVE_NOTA         = 'REMOVE_NOTA'
-const HABILITAR_EDICAO    = 'HABILITAR_EDICAO'
-const ALTERAR_NOTA        = 'ALTERAR_NOTA'
+export const ADICIONAR_NOTA      = 'ADICIONAR_NOTA'
+export const REMOVE_NOTA         = 'REMOVE_NOTA'
+export const HABILITAR_EDICAO    = 'HABILITAR_EDICAO'
+export const ALTERAR_NOTA        = 'ALTERAR_NOTA'
 
 export function adicionarNota(titulo,texto) {
   return{
