@@ -10,7 +10,7 @@ function criaFormNotas(
   removerNota,
   editarFormularios
 ) {
-  const propsFormNotas = {
+  const props = {
     key: posicao,
     posicao: posicao,
     notaAtual: props.listaNota.pega(posicao),
@@ -18,7 +18,6 @@ function criaFormNotas(
     adicionarNota: props.adicionarNota,
     editarFormularios: props.editarFormularios
   };
-  let form = React.createElement(formNotas, propsFormNotas);
 
   return <FormNotas {...props} />;
 }

@@ -17,7 +17,7 @@ function criarComponentInputTitulo(notaAlterada, posicao) {
     type: "text",
     name: "titulo",
     placeholder: "Titulo",
-    defaultValue: props.notaAlterada.titulo,
+    defaultValue: notaAlterada.titulo,
     onChange: event => {
       notaAlterada.titulo = event.target.value;
     }
