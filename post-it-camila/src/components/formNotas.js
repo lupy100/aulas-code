@@ -1,104 +1,96 @@
 import React from 'react'
-
 import Form from './form.js'
-import FormInput from './formInput'
-import FormTextarea from './formTextarea'
-import FormButton from './formButton'
-import FormInput from './formInput'
+import FormInput from './formInput.js'
+import FormTextarea from './formTextarea.js'
+import FormButton from './formButton.js'
 import Nota from '../nota'
 
-function FormNotas({
-  notaAtual,
-  posicao,
-  adicionarNota,
-  removerNota,
-  editarFormulario
-}) {
-  let notaCopiada = new Nota(notaAtual.titulo, notaAtual.texto, notaAtual.editando)
 
-  let inputTitulo = criaComponenteInputTitulo(notaCopiada)
-  let textareaTexto = criaComponenteTextarea(notaCopiada)
-
-  let props = {
-    className: 'note'
+function montaInputTitulo(notaCopiada) {
+  const props = {
+    className: 'note__title',
+    type: 'text',
+    name: 'titulo',
+    placeholder: 'Título',
+    defaultValue: notaCopiada.titulo,
+    onChange: event => notaCopiada.titulo = event.target.value
   }
-  let children
 
-  let formNotas
+  if (notaCopiada.estaVisualizando()) {
+    props.readOnly = true
+  }
 
+  return <FormInput {...props} />
+}
 
-  return(
+function montaTextareaTexto(notaCopiada) {
+  const props = {
+    className: 'note__body',
+    name: 'texto',
+    placeholder: 'Criar uma nota...',
+    rows: 5,
+    defaultValue: notaCopiada.texto,
+    onChange: event => notaCopiada.texto = event.target.value
+  }
+
+  if (notaCopiada.estaVisualizando()) {
+    props.readOnly = true
+  }
+
+  return <FormTextarea {...props} />
+}
+
+function montaButtonRemover(removerNota, notaCopiada) {
+  const props = {
+    className: 'note__control',
+    type: 'button',
+    onClick: event => {
+      event.stopPropagation()
+      removerNota(notaCopiada.posicao)
+    }
+  }
+
+  const children = <i className='fa fa-times' aria-hidden={true} />
+
+  return <FormButton {...props}>{children}</FormButton>
+}
+
+function montaButtonConcluir(adicionarNota, notaCopiada) {
+  const props = {
+    className: 'note__control',
+    type: 'button',
+    onClick: event => {
+      adicionarNota(notaCopiada.titulo, notaCopiada.texto, notaCopiada.posicao)
+      event.target.form.reset()
+    }
+  }
+
+  const children = 'Concluído'
+
+  return <FormButton {...props}>{children}</FormButton>
+}
+
+function FormNotas({ notaAtual, adicionarNota, removerNota, editarFormulario }) {
+  let notaCopiada = new Nota(notaAtual.posicao, notaAtual.titulo, notaAtual.texto, notaAtual.editando)
+
+  let inputTitulo = montaInputTitulo(notaCopiada)
+  let textareaTexto = montaTextareaTexto(notaCopiada)
+  let buttonRemover = montaButtonRemover(removerNota, notaCopiada)
+  let buttonConcluir = montaButtonConcluir(adicionarNota, notaCopiada)
+
+  let props = { className: 'note' }
+  if (notaCopiada.estaVisualizando()) {
+    props.onClick = () => editarFormulario(notaCopiada.posicao)
+  }
+
+  return (
     <Form {...props}>
-      {posicao !== undefined &&notaCopiada.editando && buttonRemover}
+      {notaCopiada.estaAlterando() && buttonRemover}
       {inputTitulo}
       {textareaTexto}
-      {posicao !== undefined!! notaCopiada.editando} && buttonConcluido}
+      {(notaCopiada.estaCadastrando() || notaCopiada.estaAlterando()) && buttonConcluir}
     </Form>
   )
-  }
-
-    function criaComponenteInputTitulo(notaCopiada, posicao) {
-      const props = {
-        key:'note-text-input',
-        className: 'note__title',
-        type: 'text',
-        name: 'titulo',
-        placeholder: 'Título',
-        defaultValue: notaAlterada.titulo,
-      }
-
-      if(posicao !== undefined && !notaCopiada.editando){
-        props.readOnly = true
-      }
-      return React.createElement(FormInput, props)
-    }
-
-    function criaComponenteTextarea(notaCopiada, posicao) {
-      const props = {
-        key:'note-text-area',
-        className: 'note__body',
-        name: 'texto',
-        placeholder: 'Criar uma nota...',
-        rows: 5,
-        readOnly: !notaAlterada.editando,
-        defaultValue: notaAlterada.texto,
-      }
-          if(posicao !== undefined && !notaCopiada.editando){
-            props.readOnly = true
-          }
-      return React.createElement(FormTextarea, props)
-    }
-
-    function criaComponenteFormButtonRemover(removerNota, posicao) {
-      const props = {
-        key:'note-button-remover',
-        className: 'note__control',
-        type: 'button',
-        onClick: event => {
-          removerNota(event, posicao)
-        }
-      }
-      const children = '<i class="fa fa-times" aria-hidden="true"></i>'
-
-      return React.createElement(FormButton, props, children)
-    }
-
-    function criaComponenteFormButtonConcluido(adicionarNota, posicao, notaCopiada) {
-      const props = {
-        key:'note-button-adicionar',
-        className: 'note__control',
-        type: 'button',
-        onClick: (e) => {
-          adicionarNota(notaCopiada.titulo, notaCopiada.texto, e.target.form, posicao)
-        }
-      }
-      const children = "Concluído"
-      return React.createElement(FormButton, props, children)
-    }
-
-  formNotas = React.createElement(form, props, children)
-
-  return formNotas
 }
 
 export default FormNotas

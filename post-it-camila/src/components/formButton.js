@@ -7,4 +7,4 @@ const FormButton = ({children, ...props}) => (
 )
 
 
-export default FormButton;
+export default ({ children, ...props }) => <button {...props}>{children}</button>

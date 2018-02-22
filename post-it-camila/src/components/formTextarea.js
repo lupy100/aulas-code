@@ -6,3 +6,4 @@ const formTextArea = props => (
 
 export default formTextArea;
 
+export default props => <textarea {...props} />
