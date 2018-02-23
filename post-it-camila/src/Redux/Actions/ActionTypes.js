@@ -1,3 +1,4 @@
 const ADD_NOTE = "ADD_NOTE";
 const DELETE_NOTE = "DELETE_NOTE";
 const UPDATE_NOTE = "UPDATE_NOTE";
+const READ_NOTE = "READ_NOTE";

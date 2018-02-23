@@ -13,10 +13,10 @@ function criaFormNotas(
   const props = {
     key: posicao,
     posicao: posicao,
-    notaAtual: props.listaNota.pega(posicao),
-    removerNota: props.removerNota,
-    adicionarNota: props.adicionarNota,
-    editarFormularios: props.editarFormularios
+    notaAtual: listaNota[posicao],
+    removerNota: removerNota,
+    adicionarNota: adicionarNota,
+    editarFormularios: editarFormularios
   };
 
   return <FormNotas {...props} />;
@@ -27,16 +27,9 @@ function SecaoNotas({ listaNota, removerNota, adicionarNota }) {
     className: "notes"
   };
 
-  const children = [];
-
-  for (let posicao = 0; posicao < listaNota.contaTotal(); posicao++) {
-    let formNota = criaFormNotas(posicao, props);
-    children.push(FormNotas);
-  }
-
   return (
     <Section {...props}>
-      {listaNota.pegaTodos().map((notaAtual, indice) => {
+      {listaNota.map((notaAtual, indice) => {
         return criaFormNotas(
           posicao,
           listaNota,

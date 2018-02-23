@@ -40,63 +40,30 @@ function montaSectionNotas(
 
 const listaNotas = new ListaNotas();
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
+function Main({ adicionarNota }) {
+  let props = {
+    className: "container"
+  };
 
-    this.adicionarNota = this.adicionarNota.bind(this);
-    this.removerNota = this.removerNota.bind(this);
-    this.editarFormulario = this.editarFormulario.bind(this);
-    this.atualizarPagina = this.atualizarPagina.bind(this);
-    // this.atualizarPagina = this.atualizarPagina.bind(this);
-    this.state = {
-      listaNotas: new ListaNotas(this.atualizarPagina)
-    };
-  }
+  let formNotas = montaFormNotas(
+    this.adicionarNota,
+    this.removerNota,
+    this.editarFormulario
+  );
+  const children = [FormNotas, SecaoNotas];
+  let SecaoNotas = montaSectionNotas(
+    this.state.listaNotas,
+    this.adicionarNota,
+    this.removerNota,
+    this.editarFormulario
+  );
 
-  adicionarNota(titulo, texto, formulario, posicao) {
-    if (this.state.ListaNotas.pegaNota(posicao)) {
-      this.state.ListaNotas.salva(posicao, titulo, texto);
-    } else {
-      this.state.ListaNotas.adiciona(titulo, texto);
-      formulario.reset();
-    }
-  }
-
-  removerNota(posicao, event) {
-    event.stopPropagation();
-    this.state.ListaNotas.remove(posicao);
-  }
-
-  editarFormulario(posicao) {
-    this.state.ListaNotas.edita(posicao);
-  }
-
-  atualizarPagina(newList) {
-    console.log("what hell is this?", this);
-    this.setState({
-      listaNotas: new ListaNotas(this.atualizarPagina)
-    });
-  }
-  render() {
-    let props = {
-      className: "container"
-    };
-
-    let formNotas = montaFormNotas(
-      this.adicionarNota,
-      this.removerNota,
-      this.editarFormulario
-    );
-    const children = [FormNotas, SecaoNotas];
-    let SecaoNotas = montaSectionNotas(
-      this.state.listaNotas,
-      this.adicionarNota,
-      this.removerNota,
-      this.editarFormulario
-    );
-
-    return <main {...props}></main>
-  }
+  return (
+    <main {...props}>
+      {formNotas}
+      {SecaoNotas}
+    </main>
+  );
 }
+
 export default Main;
