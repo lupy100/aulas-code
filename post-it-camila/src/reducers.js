@@ -17,7 +17,7 @@ export default function postitApp(estadoAtual = estadoInicial, acao) {
         notas: estadoAtual.notas.filter((nota, posicao) => {
           return posicao !== acao.posicao
         })
-      }
+      };
       return estadoNovo;
     case HABILITAR_EDICAO:
       const estadoNovo = {
